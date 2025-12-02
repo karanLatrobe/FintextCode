@@ -1,0 +1,418 @@
+{% extends "base.html" %}
+{% load static %}
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+</head>
+{% block content %}
+
+<!-- ============================= HERO SECTION ============================= -->
+<div class="min-h-[700px] w-full flex justify-center items-center pt-32 md:pt-20 p-4 md:p-10
+    bg-cover bg-center bg-no-repeat bg-[url('{% static "./enroll/images/hero3.jpg" %}')]">
+
+    <div class="w-full flex flex-col md:flex-row">
+
+        <!-- LEFT -->
+        <div class="w-full md:w-1/2 flex flex-col justify-center items-start p-4 md:p-10 gap-7">
+
+            <p class='px-3 py-2 bg-blue-100 rounded-[10px] text-[15px] flex gap-2 items-center text-blue-800'>
+                <i class="fa-regular fa-star"></i>Trusted by 5000+ startups
+            </p>
+
+            <div>
+                <h2 class='text-4xl md:text-6xl font-bold text-gray-700'>Start Extract</h2>
+
+                <h2 class='text-4xl md:text-6xl font-bold text-gray-700 flex gap-3 flex-wrap'>
+                    Smartly With
+                    <span class="bg-blue-700 text-white px-4 py-1 rounded-[10px] text-4xl md:text-6xl card" id="AICSS">AI</span>
+                </h2>
+            </div>
+
+            <p class='font-[Rubik] text-gray-600 md:pr-20'>
+                It automates financial data parsing, classification, and summary generation to simplify analysis and reporting.
+            </p>
+
+            <div class="flex gap-5 flex-wrap">
+                <a href="{% url 'signup' %}">
+                    <button class='w-[180px] md:w-[200px] py-2 border-2 rounded-[7px] text-white card' id='GETCSS'>
+                        Let's Convert
+                    </button>
+                </a>
+
+                <a href="{% url 'login' %}">
+                    <button class='w-[180px] md:w-[200px] py-2 border-2 border-gray-700 rounded-[7px] bg-white'>
+                        Login
+                    </button>
+                </a>
+            </div>
+        </div>
+
+        <!-- RIGHT UPLOAD CARD -->
+        <div class="w-full md:w-1/2 flex justify-center items-center mt-10 md:mt-0">
+
+            <div class="flex flex-col items-center gap-7 bg-white p-6 md:p-10 shadow-2xl rounded-4xl w-full max-w-[650px]">
+
+                <div class="w-full text-gray-700 text-2xl md:text-3xl font-[calibri] font-bold flex items-center gap-2">
+                    <i class="fa-solid fa-circle-down rotate-180 text-blue-700 text-4xl"></i>
+                    Upload here
+                </div>
+
+                <div id="dropArea"
+                    class="flex flex-col justify-center items-center bg-gray-100 w-full h-[220px] md:h-[250px] rounded-3xl
+                    border-dashed border-3 border-gray-300 gap-7 relative transition-all">
+
+                    <input type="file" id="myFile" name="uploadedFile"
+                        class="absolute inset-0 opacity-0 cursor-pointer" />
+
+                    <i id="uploadIcon" class="fa-solid fa-cloud-arrow-up text-6xl md:text-7xl text-gray-400"></i>
+
+                    <div class="flex flex-col items-center text-gray-700">
+                        <div>Drag and drop file here or <span class="font-semibold">Browse</span></div>
+                        <div>Maximum size: 10MB</div>
+                        <div id="fileName" class="text-blue-700 font-semibold mt-2"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ============================= FEATURES SECTION ============================= -->
+<div class="flex flex-col items-center w-full py-16 px-4">
+
+    <div class="w-full flex flex-col items-center gap-2 px-4">
+        <h2 class='text-3xl md:text-4xl font-[Bahnschrift] font-bold text-gray-700 text-center'>
+            Powerful Features for Automate Extraction
+        </h2>
+        <p class='w-full md:w-[70%] text-center text-gray-600 px-4'>
+            This system intelligently automates the extraction of transaction data from PDF bank statements with high precision.
+        </p>
+    </div>
+
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-10 px-4 md:px-40 w-full">
+
+        <!-- CARD 1 -->
+        <div class='pt-28 pb-28 px-10 rounded-2xl  shadowCss card border-4 border-gray-100 flex flex-col gap-5 '>
+            <i class="fa-solid fa-file-pdf text-4xl text-gray-200"></i>
+            <p class='text-2xl font-[Rubik] text-gray-200'>PDF Parsing</p>
+            <p class='text-gray-200'>
+                System PDF ko OCR + parsing logic se read karke date, description, amount aur type extract karta hai.
+            </p>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class='pt-28 pb-28 px-10 rounded-2xl  shadowCss card border-4 border-gray-100 flex flex-col gap-5 '>
+            <i class="fa-solid fa-list text-4xl text-gray-200"></i>
+            <p class='text-2xl font-[Rubik] text-gray-200'>Intelligent Categorization</p>
+            <p class='text-gray-200'>
+                ML/Rule-based logic se transactions ko Food, Travel, Bills, Shopping, Salary me categorize karta hai.
+            </p>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class='pt-28 pb-28 px-10 rounded-2xl  shadowCss card border-4 border-gray-100 flex flex-col gap-5 '>
+            <i class="fa-solid fa-gauge text-4xl text-gray-200"></i>
+            <p class='text-2xl font-[Rubik] text-gray-200'>Financial Summary Dashboard</p>
+            <p class='text-gray-200'>
+                Total income, expenses & category-wise charts ka neat overview generate hota hai.
+            </p>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ============================= PROCESS SECTION ============================= -->
+<div class=' pt-20 px-4 md:px-20 pb-20'>
+
+    <div class='min-h-[500px] justify-center items-center pt-20 pb-10 px-4 md:px-10 border-3 rounded-2xl processcard w-full'>
+
+        <div class='flex flex-col items-center text-center'>
+            <h2 class='text-3xl md:text-4xl font-[Bahnschrift] font-bold text-gray-700'>How Fintext Works</h2>
+            <p class='w-full md:w-[50%] text-gray-600 mt-2'>Fintext follows an AI-driven processing workflow designed to extract, categorize, and summarize financial data with precision.</p>
+        </div>
+
+        <!-- PROCESS ROW -->
+        <div class='mt-10 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-5'>
+
+            <!-- Step 1 -->
+            <div class='flex flex-col items-center gap-5'>
+                <div class='text-2xl px-5 py-3 card text-white rounded-[10px] relative'>
+                    <span>1</span>
+
+                    <!-- line only on desktop -->
+                    <div class='hidden md:block absolute top-1/2 left-full w-[380px] border-2 border-blue-800'></div>
+                </div>
+
+                <p class='text-2xl font-[calibri] font-bold text-gray-700'>PDF Data Extraction</p>
+                <p class='text-gray-600 text-center px-4'>
+                    The system intelligently reads and scans uploaded bank statements, extracting key transaction details such as date, description, amount, and balance with high accuracy.
+                </p>
+            </div>
+
+            <!-- Step 2 -->
+            <div class='flex flex-col items-center gap-5'>
+                <div class='text-2xl px-5 py-3 card text-white rounded-[10px] relative'>
+                    <span>2</span>
+
+                    <div class='hidden md:block absolute top-1/2 left-full w-[380px] border-2 border-blue-800'></div>
+                </div>
+
+                <p class='text-2xl font-[calibri] font-bold text-gray-700'>Smart Categorization</p>
+                <p class='text-gray-600 text-center px-4'>
+                    All extracted transactions are automatically analyzed and classified into relevant categories - such as Food, Travel, Bills, Shopping, Salary, and Transfers - using machine-learning models and rule-based logic.
+                </p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class='flex flex-col items-center gap-5'>
+                <div class='text-2xl px-5 py-3 card text-white rounded-[10px]'>
+                    <span>3</span>
+                </div>
+
+                <p class='text-2xl font-[calibri] font-bold text-gray-700'>Financial Summary</p>
+                <p class='text-gray-600 text-center px-4'>
+                    Fintext generates a clear and structured financial summary that highlights total income, expenses, category-wise distributions, and other key insights for seamless financial understanding.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% comment %} ======================== Accordian start here====================================== {% endcomment %}
+<div class="  flex p-10 pt-20 justify-center items-center md:p-0"> <!-- Main block-->
+    <div class='w-full md:w-[80%] flex flex-col justify-center items-center gap-14'>
+
+        <div class='flex flex-col justify-center items-center md:text-center text-left gap-4 w-full'>
+            <h2 class='text-4xl font-bold text-gray-800'>Still Got  <span class='text-blue-600'>Questions?</span> We Got You</h2>
+            <p class='text-gray-500 '>“Got questions? You’re not alone — here are the answers you’re looking for.”</p>
+        </div>
+
+        <div class='accordianbox w-[90%] md:w-full lg:w-[70%] flex flex-col justify-center items-center md:text-center text-left gap-10'>
+
+            <div class='accordian'>
+
+                <!-- Accordion Item 1 -->
+                <div class="pb-3 border-b border-slate-200">
+                    <button onclick="toggleAccordion(1)" class="w-full flex justify-between items-center py-5 text-gray-800 text-[17px] font-bold md:text-center text-left" style="font-family:Nunito" >
+                        <span>1. What does FinText do with my bank PDF?</span>
+                        <span  id="icon-1" class="text-slate-800 transition-transform duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                                <path fill-rule="evenodd" d="M11.78 9.78a.75.75 0 0 1-1.06 0L8 7.06 5.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06Z" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div id="content-1" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <div class="pb-5 text-sm text-gray-700 font-semibold text-[17px] text-left" style="font-family:Nunito">
+                            FinText automatically reads your uploaded bank statement PDF, extracts all transaction tables, and converts them into a clean, structured format.
+                            You don’t need to manually edit or filter anything — FinText handles everything for you.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 2 -->
+                <div class="pb-3 border-b border-slate-200">
+                    <button onclick="toggleAccordion(2)" class="w-full flex justify-between items-center py-5 text-gray-800 text-[17px] font-bold md:text-center text-left" style="font-family:Nunito">
+                        <span>2. Is my financial data safe while uploading the PDF?</span>
+                        <span id="icon-2" class="text-slate-800 transition-transform duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                                <path fill-rule="evenodd" d="M11.78 9.78a.75.75 0 0 1-1.06 0L8 7.06 5.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06Z" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div id="content-2" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <div class="pb-5 text-sm text-gray-700 font-semibold text-[17px] text-left" style="font-family:Nunito">
+                            Yes. FinText processes your statement securely using encrypted transfer and temporary in-memory processing.
+                            Your PDFs and extracted data are never stored permanently — everything is auto-deleted after processing.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 3 -->
+                <div class="pb-3 border-b border-slate-200">
+                    <button onclick="toggleAccordion(3)" class="w-full flex justify-between items-center py-5 text-gray-800 text-[17px] font-bold md:text-center text-left" style="font-family:Nunito">
+                        <span>3. How does FinText categorize transactions using Machine Learning?</span>
+                        <span id="icon-3" class="text-slate-800 transition-transform duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                                <path fill-rule="evenodd" d="M11.78 9.78a.75.75 0 0 1-1.06 0L8 7.06 5.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06Z" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div id="content-3" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <div class="pb-5 text-sm text-gray-700 font-semibold text-[17px] text-left" style="font-family:Nunito">
+                            FinText uses a trained ML model that understands keywords, merchants, amounts, patterns, and transaction behavior.
+                            It intelligently classifies your expenses into categories like:
+                            <ul class="list-disc list-inside text-[15px] text-slate-600">
+                                <li>Food & Drinking</li>
+                                <li>Groceries</li>
+                                <li>Shopping</li>
+                                <li>Bills & Utilites</li>
+                                <li>Travel</li>
+                                <li>Salary / Income</li>
+                                <li>EMI / Loan</li>
+                                <li>Miscellaneous</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 4 -->
+                <div class="pb-3 border-b border-slate-200">
+                    <button onclick="toggleAccordion(4)" class="w-full flex justify-between items-center py-5 text-gray-800 text-[17px] font-bold md:text-center text-left" style="font-family:Nunito">
+                        <span>4. What types of bank statements does FinText support?</span>
+                        <span id="icon-4" class="text-slate-800 transition-transform duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                                <path fill-rule="evenodd" d="M11.78 9.78a.75.75 0 0 1-1.06 0L8 7.06 5.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06Z" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div id="content-4" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <div class="pb-5 text-sm text-gray-700 font-semibold text-[17px] text-left" style="font-family:Nunito">
+                            FinText supports most major Indian bank PDFs including:
+                            <ul class="list-disc list-inside text-[15px] text-slate-600">
+                                <li>Commonwealth Bank</li>
+                                <li>Suncorp Bank</li>
+                                <li>Westpac Bank</li>
+                                <li>Bendigo Bank</li>
+                                <li>ANZ Bank</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 5 -->
+                <div class="pb-3 border-b border-slate-200">
+                    <button onclick="toggleAccordion(5)" class="w-full flex justify-between items-center py-5 text-gray-800 text-[17px] font-bold md:text-center text-left" style="font-family: 'Nunito', sans-serif;">
+                        <span>5. Can I download the extracted transactions as Excel or CSV?</span>
+                        <span id="icon-5" class="text-slate-800 transition-transform duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                                <path fill-rule="evenodd" d="M11.78 9.78a.75.75 0 0 1-1.06 0L8 7.06 5.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06Z" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div id="content-5" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <div class="pb-5 text-sm text-gray-700 font-semibold text-[17px] text-left" style="font-family:Nunito">
+                        Absolutely!
+                            After processing, FinText allows you to download the cleaned and categorized transactions as:
+                            <ul class="list-disc list-inside text-[15px] text-slate-600">
+                                <li>Excel (.xlsx)</li>
+                                <li>CSV (.csv)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class='w-full flex flex-col justify-center items-center gap-4 '>
+                <span class=' text-[17px] text-gray-700' style = "font-family: Nunito">Coludn't find an answer?</span>
+                <button class='pt-3 pb-3 pl-10 pr-10 text-center bg-gray-600 rounded-2xl text-white border-white hover:bg-blue-800 focus:outline-black'>Book a Call</button>
+            </div>
+
+
+            <div class='w-full  pt-10 pb-10 rounded-2xl flex flex-col justify-center items-center gap-4 card px-4 md:px-10'>
+
+                <h1 class='text-2xl md:text-4xl font-bold text-white text-center capitalize'>
+                    Ready to transform your PDFs ?
+                </h1>
+
+                <p class='text-gray-200 text-center text-sm md:text-base px-2'>
+                    Upload thousands of statements, get structured insights in seconds
+                </p>
+
+                <div class='flex flex-col md:flex-row gap-4 md:gap-7 mt-5 w-full md:w-auto justify-center items-center'>
+
+                    <!-- Start Button -->
+                    <a href="#" class="w-full md:w-auto">
+                        <button class='w-full md:w-auto py-3 px-10  rounded-[10px] text-[15px] border-2 border-gray-100 font-bold bg-white text-blue-800 flex justify-center items-center gap-2'
+                            style='font-family:Nunito'>
+                            <i class="fa-solid fa-circle-play"></i>Start
+                        </button>
+                    </a>
+
+                    <!-- Contact Button -->
+                    <a href="#" class="w-full md:w-auto">
+                        <button class='w-full md:w-auto py-3 px-10 rounded-[10px] text-[15px] border-2 border-gray-100 text-gray-100 flex justify-center items-center gap-2'
+                            style='font-family:Nunito'>
+                            <i class="fa-solid fa-right-long"></i>Contact
+                        </button>
+                    </a>
+
+            </div>
+
+</div>
+
+        </div>
+
+        
+    </div>
+</div>
+{% comment %} ======================== Accordian end here====================================== {% endcomment %}
+
+
+
+
+
+
+
+<script>
+    const input = document.getElementById("myFile");
+    const dropArea = document.getElementById("dropArea");
+    const fileName = document.getElementById("fileName");
+    const uploadIcon = document.getElementById("uploadIcon");
+
+    input.addEventListener("change", () => {
+        const file = input.files[0];
+
+        if (file) {
+            fileName.textContent = file.name;
+
+            // remove old border
+            dropArea.classList.remove("border-gray-300");
+
+            // Tailwind v4 fix → blue border visible
+            dropArea.classList.add("border-blue-500", "border-4");
+
+            // icon blue
+            uploadIcon.classList.remove("text-gray-400");
+            uploadIcon.classList.add("text-blue-600");
+        }
+    });
+
+
+
+
+
+    function toggleAccordion(index) {
+    const content = document.getElementById(`content-${index}`);
+    const icon = document.getElementById(`icon-${index}`);
+
+    const downSVG = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+            <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"/>
+        </svg>`;
+
+    const upSVG = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+            <path fill-rule="evenodd" d="M11.78 9.78a.75.75 0 0 1-1.06 0L8 7.06 5.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06Z"/>
+        </svg>`;
+
+    // Close if already open
+    if (content.style.maxHeight && content.style.maxHeight !== "0px") {
+        content.style.maxHeight = "0";
+        icon.innerHTML = upSVG;
+    } 
+    else {
+        content.style.maxHeight = content.scrollHeight + "px";
+        icon.innerHTML = downSVG;
+    }
+}
+</script>
+
+
+{% endblock content %}

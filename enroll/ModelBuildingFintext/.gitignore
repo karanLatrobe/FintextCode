@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Env
+venv/
+env/
+ENV/
+*.env
+
+# Django
+staticfiles/
+media/
+*.log
+*.pot
+*.pyc
+*.pid
+*.mo
+*.cover
+
+# HuggingFace Cache (IMPORTANT)
+.cache/
+huggingface/
+hf_cache/
+*.safetensors
+
+# System files
+.DS_Store
+Thumbs.db
