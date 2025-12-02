@@ -35,7 +35,7 @@ The system automates banking data processing with end-to-end intelligence.
 - Django  
 - pdfplumber  
 - Regular Expressions (Regex)  
-- Scikit-Learn ML model  
+- google/flan-t5-base
 
 ### **Frontend**
 - Django Templates  
@@ -44,33 +44,6 @@ The system automates banking data processing with end-to-end intelligence.
 ### **Database**
 - SQLITE 3
 
-## 📂 Folder Structure
-FIINTEXT/
-│
-├── core/ # Django project settings
-├── users/ # Signup, Login, Profile
-│
-├── extractor/ # Bank PDF extractors
-│ ├── Westpac.py
-│ ├── ANZ.py
-│ ├── Commonwealth.py
-│ ├── ANZBusinessEssentials.py
-│ ├── ANZBankExtractor.py
-│ └── common.py # Bank detection & mapping
-│
-├── model/ # ML model + training script
-│ └── transaction_classifier.pkl
-│
-├── templates/ # HTML Templates
-├── static/ # CSS, JS, Frontend assets
-├── media/ # Uploaded PDFs
-│
-├── requirements.txt # Dependencies
-└── manage.py # Django entry point
-
-
-
----
 
 ## ✨ Features
 
