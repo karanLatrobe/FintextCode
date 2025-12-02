@@ -5,7 +5,7 @@
 
 ## 🎥 Demo – How Fintext Works?
 
-https://github.com/user-attachments/assets/d8a74f8e-b9c1-457e-8488-b471c4a6dff1
+https://github.com/user-attachments/assets/da994dc3-1255-4671-b84e-0bcae583c597
 
 ---
 
