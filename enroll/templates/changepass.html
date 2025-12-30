@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p>change password</p>
+
+<form action="" method='post' novalidate>
+    {% csrf_token %}
+    <table>
+        {% for field in form %}
+            <tr>
+                <td class='mt-5 font-[fira code]'>{{field.label_tag}}</td>
+                <td><input type="{{ field.field.widget.input_type }}"
+                        name="{{ field.name }}"
+                        class="w-[250px] p-2 outline-none border-b-2 border-[#432323b5] focus:border-[#222831] transition" /></td>
+                <td>{{field.errors|striptags}}</td>
+            </tr>
+            {% endfor %}
+            <tr><td ><div class='bg-blue-700 text-white p-2 mt-5'><input type="submit" value='Change Password'></div></td></tr>
+    </table>
+
+</form>
+
+{% endblock content %}
+
