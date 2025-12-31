@@ -542,6 +542,9 @@ def ajax_upload(request):
 
         result_df = df.copy()
 
+# 🔥 FIX: JSONField-safe conversion
+        safe_rows = []
+
         # ----------------------------
         # 3) Create unique file ID
         # ----------------------------
@@ -551,16 +554,19 @@ def ajax_upload(request):
         # ----------------------------
         # 4) Save rows into DB
         # ----------------------------
-        ExcelRow.objects.bulk_create([
-            ExcelRow(
-                user=request.user,
-                file_id=file_id,
-                row_index=i,
-                data=row.to_dict()
+        for i, row in result_df.iterrows():
+            safe_rows.append(
+                ExcelRow(
+                    user=request.user,
+                    file_id=file_id,
+                    row_index=i,
+                    data={
+                        k: (v.isoformat() if hasattr(v, "isoformat") else v)
+                        for k, v in row.to_dict().items()
+                    }
+                )
             )
-            for i, row in result_df.iterrows()
-        ])
-
+        ExcelRow.objects.bulk_create(safe_rows)
         # ----------------------------
         # 5) Return JSON Response
         # ----------------------------
@@ -570,7 +576,7 @@ def ajax_upload(request):
             "file_id": file_id
         })
 
-    return JsonResponse({"error": "Invalid request"})
+    return JsonResponse({"error": "Invalid request"}, status=400)
 
 # ==============================================================
 # FAQ
@@ -749,7 +755,7 @@ def download_excel_from_db(request):
 
     rows = ExcelRow.objects.filter(
         file_id=file_id,
-        user=request.user
+        
     ).order_by("row_index")
 
     if not rows.exists():
