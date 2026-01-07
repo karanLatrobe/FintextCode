@@ -51,7 +51,7 @@ def detect_bank_name(pdf_path):
     # 🟦 COMMONWEALTH DETECTION
     # ======================================================
     if "Commonwealth" or "commonwealth" in pages_text:
-        if "ultimate awards credit card" or "Low Rate Mastercard" or "Low Rate Mastercard ® Credit Card" or "Low Rate" or "Credit Card" in pages_text:
+        if "ultimate awards credit card" or "Low Rate Mastercard" or "Low Rate Mastercard ® Credit Card" or "Low Rate" or "Credit Card" or "Commonwealth credit card" in pages_text:
             return "Commonwealth Credit Card"
 
     if "commonwealth" in pages_text or "commbank" in pages_text:
