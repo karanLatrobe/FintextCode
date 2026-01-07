@@ -14,6 +14,8 @@ def clean_old_excels(output_dir):
 # ===================================================
 # 🏦 1️⃣ PERFECT BANK DETECTION SYSTEM (FINAL)
 # ===================================================
+
+
 def detect_bank_name(pdf_path):
     pdf_path = Path(pdf_path)
 
@@ -48,8 +50,9 @@ def detect_bank_name(pdf_path):
     # ======================================================
     # 🟦 COMMONWEALTH DETECTION
     # ======================================================
-    if "ultimate awards credit card" in pages_text:
-        return "Commonwealth Credit Card"
+    if "Commonwealth" or "commonwealth" in pages_text:
+        if "ultimate awards credit card" or "Low Rate Mastercard" or "Low Rate Mastercard ® Credit Card" or "Low Rate" or "Credit Card" in pages_text:
+            return "Commonwealth Credit Card"
 
     if "commonwealth" in pages_text or "commbank" in pages_text:
         return "Commonwealth Bank"
@@ -119,7 +122,7 @@ BANK_MODULES = {
     "Westpac Business One": "enroll.utils.BankModules.westpacBusinessExtractor",
     "Westpac Bank": "enroll.utils.BankModules.westpacBusinessExtractor",
 
-    "Unknown": "enroll.utils.BankModules.nab"
+    "Unknown": None
 }
 
 
@@ -130,13 +133,16 @@ BANK_MODULES = {
 def process_pdf_and_return_output_path(pdf_path):
     pdf_path = Path(pdf_path)
 
+    
     detected_bank = detect_bank_name(pdf_path)
-    module_name = BANK_MODULES.get(detected_bank, "enroll.utils.BankModules.nab")
+    module_name = BANK_MODULES.get(detected_bank)
 
-    try:
-        module = importlib.import_module(module_name)
-    except ImportError:
-        module = importlib.import_module("enroll.utils.BankModules.nab")
+    if not module_name:
+        raise ValueError(
+            f"Unsupported or unknown bank PDF detected: {detected_bank}"
+        )
+
+    module = importlib.import_module(module_name)
 
     if not hasattr(module, "process_pdf"):
         raise ValueError(

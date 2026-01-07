@@ -6,6 +6,18 @@ from datetime import datetime
 # ==========================================================
 # 1. CAN_HANDLE → detect if PDF belongs to Commonwealth Credit Card
 # ==========================================================
+def is_date_range_line(desc):
+    """
+    Detects statement date range lines like:
+    '2025- 2 Oct', '2024- 15 Sep', etc.
+    """
+    return bool(
+        re.search(r"\b20\d{2}\b", desc) and
+        re.search(r"\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\b", desc)
+    )
+
+
+
 def can_handle(pdf_path, first_page_text):
     """
     Identify if this PDF belongs to Commonwealth Ultimate Awards Credit Card.
@@ -79,6 +91,9 @@ def process_pdf(pdf_path):
 
                 date = parts[0] + " " + parts[1]
                 desc = " ".join(parts[2:-1]).strip()
+
+                if is_date_range_line(desc):
+                    continue
 
                 raw_rows.append([date, desc, amount])
 
